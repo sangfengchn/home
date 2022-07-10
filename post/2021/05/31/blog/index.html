@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Linux-sudo xxx 无法找到命令 - Feng Sang | 桑峰</title>
+    <meta property="og:title" content="Linux-sudo xxx 无法找到命令 - Feng Sang | 桑峰">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+      
+    
+
+    
+      
+      <meta property="description" content="安装singularity后，将其安装路径通过.bashrc文件添加进PATH，并重新载入.bashrc. 尝试运行singularity，正常可用。但运行sudo singularity时，提示无法找到此命令。
+[&amp;hellip;] singularity version: 2.6.0-dist
+install path: /usr/local/singularity
+OS version: &amp;hellip;">
+      <meta property="og:description" content="安装singularity后，将其安装路径通过.bashrc文件添加进PATH，并重新载入.bashrc. 尝试运行singularity，正常可用。但运行sudo singularity时，提示无法找到此命令。
+[&amp;hellip;] singularity version: 2.6.0-dist
+install path: /usr/local/singularity
+OS version: &amp;hellip;">
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+    <link rel="stylesheet" href="../../../../../css/style.css" />
+    <link rel="stylesheet" href="../../../../../css/fonts.css" />
+    <link rel="stylesheet" href="../../../../../css/custom.css" />
+
+  </head>
+
+  
+  <body class="post">
+    <header class="masthead">
+      <h1><a href="../../../../../">Feng Sang | 桑峰</a></h1>
+
+<p class="tagline">A website of Feng Sang</p>
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" hidden/>
+  <label id="menu-label" for="menu-check" class="unselectable" hidden>
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="../../../../../post/">博客</a></li>
+  
+  <li><a href="../../../../../about">关于</a></li>
+  
+  <li><a href="../../../../../tags/">标签</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+<h1>Linux-sudo xxx 无法找到命令</h1>
+
+<h3>桑峰
+  /  2021-05-31</h3>
+<hr>
+
+
+      </header>
+
+
+
+
+<script src="../../../../../post/2021/05/31/blog/index_files/header-attrs/header-attrs.js"></script>
+
+
+<div id="问题描述" class="section level3">
+<h3>问题描述</h3>
+<p>安装singularity后，将其安装路径通过.bashrc文件添加进PATH，并重新载入.bashrc. 尝试运行singularity，正常可用。但运行sudo singularity时，提示无法找到此命令。</p>
+<blockquote>
+<p>singularity version: 2.6.0-dist</p>
+<p>install path: /usr/local/singularity</p>
+<p>OS version: CentOS 7</p>
+</blockquote>
+</div>
+<div id="解决方法" class="section level3">
+<h3>解决方法</h3>
+<p>在/usr/bin中创建singularity的连接文件即可。</p>
+<pre class="bash"><code>sudo ln -s /usr/local/singularity/bin/singularity /usr/bin/singularity</code></pre>
+</div>
+<div id="参考" class="section level3">
+<h3>参考</h3>
+<p>[1] <a href="https://blog.csdn.net/tanmx219/article/details/86750322" class="uri">https://blog.csdn.net/tanmx219/article/details/86750322</a></p>
+</div>
+
+
+  <footer>
+  
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="../../../../../post/2021/05/27/blog/">使用CAT12可视化皮层Surface指标</a></span>
+  <span class="nav-next"><a href="../../../../../post/2021/06/01/blog/">Singularity-03-创建镜像</a> &rarr;</span>
+</nav>
+
+
+
+
+
+<script src="//yihui.org/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.org/js/center-img.js"></script>
+
+  
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/tex.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+  
+  <hr>
+  <div class="copyright">© [Feng Sang] 2021-2022 | <a href="mailto:sangfengchn@outlook.com">Mail</a> | <a href="https://github.com/sangfengchn">Github</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+

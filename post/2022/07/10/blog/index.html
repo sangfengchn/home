@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>笔记-RMarkdown和ggplot2 - Feng Sang | 桑峰</title>
+    <meta property="og:title" content="笔记-RMarkdown和ggplot2 - Feng Sang | 桑峰">
+    
+    <meta name="twitter:card" content="summary">
+
+    
+      
+    
+
+    
+      
+      <meta property="description" content="在R Markdown中给图表添加引用是首先需要在文件的输出格式设置为以下三种之一。
+output: # bookdown::word_document2: default bookdown::html_document2: default # bookdown::pdf_document2: default 其次在绘制图表时需要添加标签，如下图1所示：
+[&amp;hellip;] Figure 1:  &amp;hellip;">
+      <meta property="og:description" content="在R Markdown中给图表添加引用是首先需要在文件的输出格式设置为以下三种之一。
+output: # bookdown::word_document2: default bookdown::html_document2: default # bookdown::pdf_document2: default 其次在绘制图表时需要添加标签，如下图1所示：
+[&amp;hellip;] Figure 1:  &amp;hellip;">
+      
+    
+
+    
+    
+
+    
+
+    
+    
+
+
+<link href='//cdn.bootcss.com/highlight.js/9.12.0/styles/github.min.css' rel='stylesheet' type='text/css' />
+
+
+
+    <link rel="stylesheet" href="../../../../../css/style.css" />
+    <link rel="stylesheet" href="../../../../../css/fonts.css" />
+    <link rel="stylesheet" href="../../../../../css/custom.css" />
+
+  </head>
+
+  
+  <body class="post">
+    <header class="masthead">
+      <h1><a href="../../../../../">Feng Sang | 桑峰</a></h1>
+
+<p class="tagline">A website of Feng Sang</p>
+
+      <nav class="menu">
+  <input id="menu-check" type="checkbox" hidden/>
+  <label id="menu-label" for="menu-check" class="unselectable" hidden>
+    <span class="icon close-icon">✕</span>
+    <span class="icon open-icon">☰</span>
+    <span class="text">Menu</span>
+  </label>
+  <ul>
+  
+  
+  <li><a href="../../../../../post/">博客</a></li>
+  
+  <li><a href="../../../../../about">关于</a></li>
+  
+  <li><a href="../../../../../tags/">标签</a></li>
+  
+  
+  </ul>
+</nav>
+
+    </header>
+
+    <article class="main">
+      <header class="title">
+      
+<h1>笔记-RMarkdown和ggplot2</h1>
+
+<h3>桑峰
+  /  2022-07-10</h3>
+<hr>
+
+
+      </header>
+
+
+
+
+
+
+<div id="r-markdown图表交叉引用" class="section level1">
+<h1>R Markdown图表交叉引用</h1>
+<p>在R Markdown中给图表添加引用是首先需要在文件的输出格式设置为以下三种之一。</p>
+<pre class="r"><code>output:
+  # bookdown::word_document2: default
+  bookdown::html_document2: default
+  # bookdown::pdf_document2: default</code></pre>
+<p>其次在绘制图表时需要添加标签，如下图<a href="#fig:fig-demo">1</a>所示：</p>
+<div class="figure"><span style="display:block;" id="fig:fig-demo"></span>
+<img src="img/demo.png" alt="这是一个示例。"  />
+<p class="caption">
+Figure 1: 这是一个示例。
+</p>
+</div>
+<p>其中fig-demo为图片的标签。在文中引用时，输入<strong>\<span class="citation">@ref</span>(fig:fig-demo)</strong>即可自动添加图片引用。</p>
+</div>
+<div id="ggplot2添加标签" class="section level1">
+<h1>ggplot2添加标签</h1>
+<div id="修改坐标轴端点样式" class="section level2">
+<h2>修改坐标轴端点样式</h2>
+<p>坐标轴端点样式可以通过如下命令修改，下图<a href="#fig:fig-round">2</a>、图<a href="#fig:fig-butt">3</a>和图<a href="#fig:fig-square">4</a>分别是三种端点样式的是示例图。</p>
+<pre class="r"><code>theme(axis.line = element_line(lineend=&#39;round&#39;))</code></pre>
+<div class="figure"><span style="display:block;" id="fig:fig-round"></span>
+<img src="img/demo-round.png" alt="这是round。"  />
+<p class="caption">
+Figure 2: 这是round。
+</p>
+</div>
+<div class="figure"><span style="display:block;" id="fig:fig-butt"></span>
+<img src="img/demo-butt.png" alt="这是butt。"  />
+<p class="caption">
+Figure 3: 这是butt。
+</p>
+</div>
+<div class="figure"><span style="display:block;" id="fig:fig-square"></span>
+<img src="img/demo-square.png" alt="这是square。"  />
+<p class="caption">
+Figure 4: 这是square。
+</p>
+</div>
+</div>
+<div id="给柱状图添加标签" class="section level2">
+<h2>给柱状图添加标签</h2>
+<p>给柱状图每个柱子添加相应的数字标签可以通过geom_text函数完成，显示效果如图<a href="#fig:fig-label">5</a>所示。</p>
+<pre class="r"><code>tmpData %&gt;%
+  count(MRIAGE_group, Sex) %&gt;%
+  ggplot(aes(x = MRIAGE_group, y = n, fill = Sex, label = n)) +
+  geom_bar(stat = &#39;identity&#39;, position = position_dodge()) +
+  geom_text(position = position_dodge(width = 0.9), vjust = -0.1) +
+  labs(x = &#39;Age&#39;, y = &#39;Number&#39;) +
+  theme_classic(base_size = 20) +
+  theme(
+    axis.line = element_line(lineend=&#39;round&#39;),
+    axis.text.x = element_text(angle = 45, hjust = 0.5, vjust = 0.6))</code></pre>
+<div class="figure"><span style="display:block;" id="fig:fig-label"></span>
+<img src="img/demo-label.png" alt="柱状图标签。"  />
+<p class="caption">
+Figure 5: 柱状图标签。
+</p>
+</div>
+</div>
+</div>
+
+
+  <footer>
+  
+<nav class="post-nav">
+  <span class="nav-prev">&larr; <a href="../../../../../post/2022/07/07/blog/">配准方法示例</a></span>
+  <span class="nav-next"></span>
+</nav>
+
+
+
+
+
+<script src="//yihui.org/js/math-code.js"></script>
+<script async src="//mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+
+<script async src="//yihui.org/js/center-img.js"></script>
+
+  
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+
+
+
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/r.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/yaml.min.js"></script>
+<script src="//cdn.bootcss.com/highlight.js/9.12.0/languages/tex.min.js"></script>
+<script>hljs.configure({languages: []}); hljs.initHighlightingOnLoad();</script>
+
+
+
+  
+  <hr>
+  <div class="copyright">© [Feng Sang] 2021-2022 | <a href="mailto:sangfengchn@outlook.com">Mail</a> | <a href="https://github.com/sangfengchn">Github</a></div>
+  
+  </footer>
+  </article>
+  
+  </body>
+</html>
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>rmarkdown on Feng Sang | 桑峰</title>
+    <link>/tags/rmarkdown/</link>
+    <description>Recent content in rmarkdown on Feng Sang | 桑峰</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sun, 10 Jul 2022 00:00:00 +0000</lastBuildDate><atom:link href="/tags/rmarkdown/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>笔记-RMarkdown和ggplot2</title>
+      <link>/post/2022/07/10/blog/</link>
+      <pubDate>Sun, 10 Jul 2022 00:00:00 +0000</pubDate>
+      
+      <guid>/post/2022/07/10/blog/</guid>
+      <description>R Markdown图表交叉引用 在R Markdown中给图表添加引用是首先需要在文件的输出格式设置为以下三种之一。
+output: # bookdown::word_document2: default bookdown::html_document2: default # bookdown::pdf_document2: default 其次在绘制图表时需要添加标签，如下图1所示：
+ Figure 1: 这是一个示例。  其中fig-demo为图片的标签。在文中引用时，输入\@ref(fig:fig-demo)即可自动添加图片引用。
+ ggplot2添加标签 修改坐标轴端点样式 坐标轴端点样式可以通过如下命令修改，下图2、图3和图4分别是三种端点样式的是示例图。
+theme(axis.line = element_line(lineend=&amp;#39;round&amp;#39;))  Figure 2: 这是round。   Figure 3: 这是butt。   Figure 4: 这是square。   给柱状图添加标签 给柱状图每个柱子添加相应的数字标签可以通过geom_text函数完成，显示效果如图5所示。
+tmpData %&amp;gt;% count(MRIAGE_group, Sex) %&amp;gt;% ggplot(aes(x = MRIAGE_group, y = n, fill = Sex, label = n)) + geom_bar(stat = &amp;#39;identity&amp;#39;, position = position_dodge()) + geom_text(position = position_dodge(width = 0.</description>
+    </item>
+    
+  </channel>
+</rss>
